@@ -29,7 +29,7 @@ class JSON_API Writer {
 public:
   virtual ~Writer();
 
-  virtual std::string write(const Value& root) = 0;
+  virtual const std::string& write(const Value& root) = 0;
 };
 
 /** \brief Outputs a Value in <a HREF="http://www.json.org">JSON</a> format
@@ -57,7 +57,7 @@ public:
   void omitEndingLineFeed();
 
 public: // overridden from Writer
-  virtual std::string write(const Value& root);
+  virtual const std::string& write(const Value& root);
 
 private:
   void writeValue(const Value& value);
@@ -101,7 +101,7 @@ public: // overridden from Writer
    * \param root Value to serialize.
    * \return String containing the JSON document that represents the root value.
    */
-  virtual std::string write(const Value& root);
+  virtual const std::string& write(const Value& root);
 
 private:
   void writeValue(const Value& value);

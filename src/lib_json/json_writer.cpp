@@ -187,8 +187,8 @@ void FastWriter::dropNullPlaceholders() { dropNullPlaceholders_ = true; }
 
 void FastWriter::omitEndingLineFeed() { omitEndingLineFeed_ = true; }
 
-std::string FastWriter::write(const Value& root) {
-  document_ = "";
+const std::string& FastWriter::write(const Value& root) {
+  document_.clear();
   writeValue(root);
   if (!omitEndingLineFeed_)
     document_ += "\n";
@@ -249,8 +249,8 @@ void FastWriter::writeValue(const Value& value) {
 StyledWriter::StyledWriter()
     : rightMargin_(74), indentSize_(3), addChildValues_() {}
 
-std::string StyledWriter::write(const Value& root) {
-  document_ = "";
+const std::string& StyledWriter::write(const Value& root) {
+  document_.clear();
   addChildValues_ = false;
   indentString_ = "";
   writeCommentBeforeValue(root);
